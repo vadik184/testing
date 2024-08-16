@@ -1,7 +1,7 @@
 const text = "перші. літери. мають. бути. великі.";
-console.log(text);
+// console.log(text);
 let arrText = text.split(".");
-console.log(arrText);
+// console.log(arrText);
 
 let newArr = [];
 let newArr1 = [];
@@ -23,8 +23,8 @@ function getNewArr() {
 
     finishArr = line.join("");
 
-    console.log(line);
-    console.log(finishArr);
+    // console.log(line);
+    // console.log(finishArr);
 
     newArr.push(finishArr);
     continue;
@@ -35,4 +35,4 @@ function getNewArr() {
 getNewArr();
 
 newArr = newArr.join(". ") + ".";
-console.log(newArr);
+// console.log(newArr);
