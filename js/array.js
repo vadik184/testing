@@ -121,3 +121,231 @@ function findLargestNumber() {
 
 console.log(findLargestNumber(2, 17, 94, 1, 23));
 console.log(findLargestNumber(49, 4, 7, 83, 12));
+//-----------------------------------------------------------------------------------
+// Створіть масив об'єктів employees, де кожен об'єкт містить властивості name, position, salary.
+// Напишіть функцію, яка повертає новий масив з об'єктами, де salary більше певного значення.
+let employees = [
+  { name: "Анна", position: "Менеджер", salary: 5000 },
+  { name: "Іван", position: "Розробник", salary: 7000 },
+  { name: "Олена", position: "Дизайнер", salary: 4500 },
+];
+
+function filterBySalary(employees, minSalary) {
+  let result = [];
+  for (const key in employees) {
+    if (employees[key].salary > minSalary) {
+      result.push(employees[key]);
+    }
+  }
+  return result;
+}
+console.log(filterBySalary(employees, 5000));
+//-----------------------------------------------------------------------------------
+// Створіть масив об'єктів students, де кожен об'єкт містить властивості name, age, grade.
+// Напишіть функцію, яка групує студентів за їх оцінками (grade) і повертає об'єкт,
+// де ключами є оцінки, а значеннями - масиви студентів з відповідною оцінкою.
+let students = [
+  { name: "Марія", age: 20, grade: "A" },
+  { name: "Петро", age: 22, grade: "B" },
+  { name: "Оксана", age: 21, grade: "A" },
+  { name: "Іван", age: 23, grade: "C" },
+  { name: "Олена", age: 20, grade: "B" },
+];
+
+function groupByGrade(students) {
+  // Ваш код тут
+  let studentsGrade = {};
+  for (let student of students) {
+    let grade = student.grade;
+    if (!studentsGrade[grade]) {
+      studentsGrade[grade] = [];
+    }
+    studentsGrade[grade].push(student);
+  }
+  return studentsGrade;
+}
+console.log(groupByGrade(students));
+
+//-----------------------------------------------------------------------------------
+// Створіть об'єкт original, який містить вкладені об'єкти.
+// Напишіть функцію для глибокого клонування цього об'єкта, щоб зміни в клоні не впливали на оригінал.
+let original = {
+  name: "Продукт",
+  details: {
+    weight: "1kg",
+    manufacturer: "Компанія",
+  },
+};
+
+function deepClone(obj) {
+  // Ваш код тут
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+  let clone = Array.isArray(obj) ? [] : {};
+
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      clone[key] = deepClone(obj[key]);
+    }
+  }
+  return clone;
+}
+console.log(deepClone(original));
+//-----------------------------------------------------------------------------------
+// Створіть два об'єкти obj1 і obj2, які містять деякі спільні властивості.
+// Напишіть функцію, яка об'єднує ці два об'єкти в один, причому значення спільних властивостей повинні бути об'єднані в масиви.
+let obj1 = { a: 1, b: 2, c: 3 };
+let obj2 = { b: 4, c: 5, d: 6 };
+
+function mergeObjects(obj1, obj2) {
+  // Ваш код тут
+  let obj3 = {};
+
+  for (const key in obj1) {
+    if (obj1.hasOwnProperty(key)) {
+      obj3[key] = obj1[key];
+      console.log(obj1[key]);
+    }
+  }
+  for (const key in obj2) {
+    if (obj2.hasOwnProperty(key)) {
+      if (obj3.hasOwnProperty(key)) {
+        obj3[key] = obj3[key] + obj2[key];
+      } else {
+        obj3[key] = obj2[key];
+      }
+    }
+  }
+  return obj3;
+}
+console.log(mergeObjects(obj1, obj2));
+//-----------------------------------------------------------------------------------
+// Створіть об'єкт settings, який містить властивості theme, language, notifications.
+// Напишіть функцію, яка приймає масив ключів і значень, і динамічно додає ці властивості до об'єкта settings.
+let settings = {
+  theme: "dark",
+  language: "uk",
+  notifications: true,
+};
+
+function addProperties(settings, properties) {
+  for (let i = 0; i < properties.length; i += 1) {
+    let key = properties[i][0];
+    let value = properties[i][1];
+    settings[key] = value;
+  }
+}
+
+let newProperties = [
+  ["fontSize", "16px"],
+  ["backgroundColor", "blue"],
+  ["showSidebar", false],
+];
+addProperties(settings, newProperties);
+console.log(settings);
+//-----------------------------------------------------------------------------------
+// Завдання : Пошук об'єктів за властивістю
+// Дано масив об'єктів, кожен з яких описує певну подію. Реалізуй функцію findEvent(events, key, value),
+// яка шукає та повертає об'єкт події за заданою властивістю (key) та її значенням (value).
+
+const events = [
+  { id: 1, name: "Концерт", date: "2024-09-01", location: "Київ" },
+  { id: 2, name: "Виставка", date: "2024-09-10", location: "Львів" },
+  { id: 3, name: "Фестиваль", date: "2024-09-15", location: "Одеса" },
+];
+function findEvent(events, key, value) {
+  for (let i = 0; i < events.length; i += 1) {
+    if (events[i][key] === value) {
+      console.log(events[i][key]);
+      console.log(value);
+
+      return events[i];
+    }
+  }
+  return;
+}
+let result = findEvent(events, "location", "Одеса");
+console.log(result);
+
+// console.log(findEvent(events, key2, value2));
+//-----------------------------------------------------------------------------------
+// Завдання : Об'єднання кількох об'єктів
+// Дано два об'єкти, що містять дані про користувача. Об'єднай ці об'єкти у один, щоб уникнути дублікатів,
+// але зберегти всі властивості, навіть якщо вони дублюються. Якщо властивості дублюються, залишити значення з другого об'єкта.
+
+const user1 = {
+  name: "Олександр",
+  age: 25,
+  email: "olex@example.com",
+};
+
+const user2 = {
+  email: "alex@example.com",
+  city: "Львів",
+};
+function sumUser(user1, user2) {
+  let oneUser = {};
+  for (const key in user1) {
+    console.log(user1[key]);
+    if (user1.hasOwnProperty(key)) {
+      oneUser[key] = user1[key];
+    }
+  }
+  for (const key in user2) {
+    if (user2.hasOwnProperty(key)) {
+      console.log(user2[key]);
+      if (oneUser.hasOwnProperty(key) && oneUser[key] === user2[key]) {
+        oneUser[key] = oneUser[key];
+      } else {
+        oneUser[key] = user2[key];
+      }
+    }
+  }
+  return oneUser;
+}
+
+console.log(sumUser(user1, user2));
+// Реалізуй об'єднання об'єктів тут
+
+//-----------------------------------------------------------------------------------
+// Завдання : Фільтрація об'єктів у масиві
+// Дано масив об'єктів, що описують товари в магазині. Реалізуй функцію filterProducts(products, criterion),
+// яка повертає новий масив товарів, що задовольняють заданий критерій (наприклад, всі товари дешевші за 100 грн).
+
+const products = [
+  { name: "Молоко", price: 50 },
+  { name: "Хліб", price: 30 },
+  { name: "Сир", price: 150 },
+  { name: "Яблука", price: 70 },
+];
+
+function filterProducts(products, criterion) {
+  let listProduct = [];
+  for (let i = 0; i < products.length; i += 1) {
+    for (const key in products[i]) {
+      console.log(products[i][key]);
+      if (products[i][key] >= criterion) {
+        listProduct.push(products[i]);
+      }
+    }
+  }
+  return listProduct;
+}
+
+console.log(filterProducts(products, 70));
+// Реалізуй функцію filterProducts(products, criterion) тут
+
+//-----------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------
