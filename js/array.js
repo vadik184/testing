@@ -337,8 +337,66 @@ console.log(filterProducts(products, 70));
 // Реалізуй функцію filterProducts(products, criterion) тут
 
 //-----------------------------------------------------------------------------------
+// Створи об'єкт "магазин" з масивом товарів, кожен з яких має властивість name та price.
+// Додай метод addDiscount, який додає властивість discount (у відсотках) до кожного товару,
+// а також метод applyDiscount, який оновлює ціну товару з урахуванням знижки.
+
+const store = {
+  products: [
+    { name: "Телефон", price: 10000 },
+    { name: "Ноутбук", price: 20000 },
+  ],
+  addDiscount(discount) {
+    for (let i = 0; i < this.products.length; i++) {
+      this.products[i].discount = discount;
+    }
+  },
+  applyDiscount() {
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i].discount) {
+        this.products[i].price =
+          this.products[i].price -
+          this.products[i].price * (this.products[i].discount / 100);
+      }
+    }
+  },
+};
+store.addDiscount(10); // Додає знижку 10% до всіх товарів
+store.applyDiscount();
+console.log(store.products);
+// Приклад використання:
+// store.addDiscount(10); // Додає знижку 10% до всіх товарів
+// store.applyDiscount();
+// console.log(store.products);
+// Виведе: [{ name: "Телефон", price: 9000 }, { name: "Ноутбук", price: 18000 }]
 
 //-----------------------------------------------------------------------------------
+// Створи об'єкт "книга", який містить інформацію про автора (об'єкт з властивостями firstName, lastName),
+// видавця (об'єкт з властивостями name та location) та метод getAuthorFullName, який повертає повне ім'я автора.
+
+const book = {
+  title: "Захар Беркут",
+  author: {
+    firstName: "Іван",
+    lastName: "Франко",
+  },
+  publisher: {
+    name: "Видавництво Старого Лева",
+    location: "Львів",
+  },
+
+  getAuthorFullName() {
+    // let fullName = "";
+    // for (const key in this.author) {
+    //   fullName += this.author[key] + " ";
+    // }
+    // return fullName.slice(0, -1);
+    return `${this.author.firstName} ${this.author.lastName}`;
+  },
+};
+
+// Приклад використання:
+console.log(book.getAuthorFullName()); // "Іван Франко"
 
 //-----------------------------------------------------------------------------------
 
