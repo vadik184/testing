@@ -1,0 +1,6 @@
+mystic: BC25C4
+cosmic: 059AC5
+mutant: EDB823
+science: 50A91E
+skill: EA1312
+tech: 1E35CD

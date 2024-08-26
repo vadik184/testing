@@ -20,34 +20,73 @@ body {
   padding: 25px;
 }
 .red2 {
-  position: relative;
   margin: 20px;
   width: 500px;
   height: 500px;
   background-color: beige;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-
+  gap: 8px;
   padding: 25px;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
-.blue {
-  position: absolute;
-  margin: 20px;
-  width: 100px;
-  height: 100px;
-  background-color: blue;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  bottom: 0;
+.portrait {
+  width: 140px;
+  height: 140px;
+}
+.cosmic {
+  width: 140px;
+  height: 140px;
+  background-color: #059ac5;
+  border-radius: 50%;
+  border: #059ac5 5px solid;
+  overflow: hidden;
+}
 
-  padding: 25px;
+.mystic {
+  width: 140px;
+  height: 140px;
+  background-color: #bc25c4;
+  border-radius: 50%;
+  border: #bc25c4 5px solid;
+  overflow: hidden;
 }
+.skill {
+  width: 140px;
+  height: 140px;
+  background-color: #ea1312;
+  border-radius: 50%;
+  border: #ea1312 5px solid;
+  overflow: hidden;
+}
+.science {
+  width: 140px;
+  height: 140px;
+  background-color: #50a91e;
+  border-radius: 50%;
+  border: #50a91e 5px solid;
+  overflow: hidden;
+}
+.mutant {
+  width: 140px;
+  height: 140px;
+  background-color: #edb823;
+  border-radius: 50%;
+  border: #edb823 5px solid;
+  overflow: hidden;
+}
+.tech {
+  width: 140px;
+  height: 140px;
+  background-color: #1e35cd;
+  border-radius: 50%;
+  border: #1e35cd 5px solid;
+  overflow: hidden;
+}
+
 .clockContainer {
   margin: 20px;
   width: 500px;
