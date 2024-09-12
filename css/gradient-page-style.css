@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: rgba(232, 232, 237, 0.7);
+}
+li {
+  list-style: none;
+}
+.gradient-main-container {
+  margin: 26px;
+}
+.back-link {
+}
+.back-icon {
+  margin: 25px;
+  background-color: rgba(255, 255, 252, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  fill: #cc66ff;
+}
+.gradient-list {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.gradient-list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: rgba(255, 255, 252, 0.8);
+  -webkit-box-shadow: 0px 0px 49px -16px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 49px -16px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 7px 39px -16px rgba(0, 0, 0, 0.75);
+}
+.gradient-name {
+  color: rgb(29, 29, 31);
+  padding: 0 10px 20px 10px;
+}
+.gradient-text {
+  color: rgba(29, 29, 31, 0.7);
+  font-size: 20px;
+  font-weight: 700;
+}
+.gradient-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px;
+  border-radius: 10px;
+  width: 300px;
+  height: 165px;
+}
+.box-1 {
+  background: linear-gradient(0deg, #ffc000 0%, #cc66ff 100%);
+}
+.box-2 {
+  background: linear-gradient(0deg, #00b0f0 0%, #cc66ff 100%);
+}
