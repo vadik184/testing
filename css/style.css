@@ -6,23 +6,25 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
-.red {
+.main-container {
   margin: 20px;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   background-color: beige;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-
   padding: 25px;
+}
+.main-container p {
+  font-size: 20px;
 }
 .red2 {
   margin: 20px;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   background-color: beige;
   display: flex;
   justify-content: center;
@@ -34,12 +36,12 @@ body {
   overflow: hidden;
 }
 .portrait {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
 }
 .cosmic {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   background-color: #059ac5;
   border-radius: 50%;
   border: #059ac5 5px solid;
@@ -47,40 +49,40 @@ body {
 }
 
 .mystic {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   background-color: #bc25c4;
   border-radius: 50%;
   border: #bc25c4 5px solid;
   overflow: hidden;
 }
 .skill {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   background-color: #ea1312;
   border-radius: 50%;
   border: #ea1312 5px solid;
   overflow: hidden;
 }
 .science {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   background-color: #50a91e;
   border-radius: 50%;
   border: #50a91e 5px solid;
   overflow: hidden;
 }
 .mutant {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   background-color: #edb823;
   border-radius: 50%;
   border: #edb823 5px solid;
   overflow: hidden;
 }
 .tech {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   background-color: #1e35cd;
   border-radius: 50%;
   border: #1e35cd 5px solid;
@@ -89,8 +91,8 @@ body {
 
 .clockContainer {
   margin: 20px;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   background-color: beige;
   border-radius: 30px;
   display: flex;
@@ -100,9 +102,7 @@ body {
 }
 input {
 }
-p {
-  font-size: 24px;
-}
+
 .clock {
   position: relative;
   width: 300px;
@@ -202,8 +202,8 @@ p {
 }
 .movie-card {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -277,7 +277,7 @@ p {
   align-items: center;
   cursor: pointer;
   text-decoration: none;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 900;
 }
 .gradient-title {
