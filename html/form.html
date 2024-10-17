@@ -15,47 +15,49 @@
       referrerpolicy="no-referrer"
     />
     <title>Document</title>
-  </head>
-  <br>
-  <h2>Атребут <em>type</em> тега <strong>inpyt</strong> та його значення</h2>
-  <ul>
-    <li>
-        <p>button</p><input type="button" value="on" /></form></li>
-    <li><p>checkbox</p>
-    <fieldset>
-        <legend>Вибери декілька кольорів</legend>
-         <input checked type="checkbox" name="checkbox" id="checkbox-color">
-           <label for="checkbox-color">жовтий</label>
-         <input type="checkbox" name="checkbox" id="checkbox-color">
-           <label for="checkbox-color">синій</label>
-         <input type="checkbox" name="checkbox" id="checkbox-color">
-           <label for="checkbox-color">фіолетовий</label>
-    </fieldset></li>
-    <li><p>color</p><input type="color" name="checkbox" id=""></li>
-    <li><p>date</p><input type="date" name="" id=""></li>
-    <li><p>datetime</p><input type="datetime" name="" id=""></li>
-    <li><p>datetime-local</p><input type="datetime-local" name="" id=""></li>
-    <li><p>email</p><input type="email" name="" id=""></li>
-    <li><p>file</p><input type="file" name="" id=""></li>
-    <li><p>hidden</p><input type="hidden"></li>
-    <li><p>image</p><input type="image" src="" alt=""></li>
-    <li><p>month</p><input type="month" name="" id=""></li>
-    <li><p>number</p><input type="number" name="" id=""></li>
-    <li><p>password</p><input type="password" name="" id=""></li>
-    <li><p>radio</p>
-        <fieldset>
-            <legend>вибери один колір</legend>
-        <input checked type="radio" name="choise" id="">жовтий
-        <input type="radio" name="choise" id="">синій</li></fieldset>
-    <li><p>range</p><input type="range" name="" id="" min="0" max="50"></li>
-    <li><p>reset</p><input type="reset" value="reset"></li>
-    <li><p>search</p><input type="search" name="" id=""></li>
-    <li><p>submit</p><input type="submit" value="submit"></li>
-    <li><p>tel</p><input type="tel" name="" id=""></li>
-    <li><p>text</p><input type="text" name="" id=""></li>
-    <li><p>time</p><input type="time" name="" id=""></li>
-    <li><p>url</p><input type="url" name="" id=""></li>
-    <li><p>week</p><input type="week" name="" id=""></li>
-  </ul>
+  <body>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/test.css">
+    <title>Преміальна Веб-Картка</title>
+</head>
+<body>
+
+<body>
+   
+    <div class="container">
+        <div class="card">
+            <h2>Твоя Веб-Картка</h2>
+            <form>
+                <div class="input-section">
+                    <label for="gender">Вибір статі:</label>
+                    <label class="radio-label"><input type="radio" id="boy" name="gender" value="boy"> Хлопець</label>
+                    <label class="radio-label"><input type="radio" id="girl" name="gender" value="girl"> Дівчина</label><br><br>
+                </div>
+
+                <div class="input-section">
+                    <label for="name">Введи ім'я:</label>
+                    <input type="text" id="name" name="name" placeholder="Введіть ім'я..."><br>
+                </div>
+
+                <div class="input-section">
+                    <label for="position">Вибери посаду:</label>
+                    <select id="position" name="position">
+                        <option value="" disabled selected>(вибрати)</option>
+                        <option value="manager">Менеджер</option>
+                        <option value="developer">Розробник</option>
+                        <option value="designer">Дизайнер</option>
+                    </select><br>
+                </div>
+
+                <div class="input-section">
+                    <input type="submit" value="Сформувати бейдж">
+                </div>
+            </form>
+        </div>
+    </div>
   </body>
 </html>
