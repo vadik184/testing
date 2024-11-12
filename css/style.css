@@ -281,3 +281,10 @@ input {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+#image {
+  width: 200px;
+  height: 200px;
+}
+.color-container {
+  border: 1px solid red;
+}
