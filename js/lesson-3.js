@@ -14,9 +14,9 @@ const user = {
 };
 const {
   name,
-  skills: { css },
+  skills: { css, js, html },
 } = user;
-console.log(css); //true
+console.log(js, html); //true
 
 // const { age: userAge } = user;
 // console.log(age); // помилка
