@@ -1,0 +1,20 @@
+[
+  {
+    "id": 7,
+    "name": "Red ULTRA VIP",
+    "price": 1500,
+    "discont": 1125,
+    "premium": {
+      "main": 230,
+      "migration": 180
+    },
+    "services": true,
+    "filling": {
+      "internet": { "infinity": true, "amount": 0 },
+      "minuteOther": { "infinity": true, "amount": 0 },
+      "minuteVodafone": true,
+      "minuteWorld": 750,
+      "sms": 2500
+    }
+  }
+]
