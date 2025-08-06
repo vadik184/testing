@@ -104,33 +104,224 @@
 // console.log(countup(5));
 
 /**---------функція яка формую linear-gradient з масиву градієнтів -----------*/
-let gradients = [
-  {
-    name: "violet-yellow",
-    colors: ["#CC66FF", "#FFC000"],
-  },
-  {
-    name: "laguna 3",
-    colors: ["#CC66FF", "#00B0F0", "#FFC000"],
-  },
-];
-console.log(gradients);
-function createGradient(colors) {
-  if (!Array.isArray(colors) || colors.length === 0) {
-    console.log("Невірний формат кольорів");
-    return;
-  }
-  const step = 100 / colors.length;
-  const gradientColors = colors.map((color, index) => {
-    const percentage =
-      index === 0 ? Math.round(step * index) : Math.round(step * index + step);
-    return `${color} ${percentage}%`;
-  });
-  const gradient = `linear-gradient(0deg, ${gradientColors.join(", ")})`;
-  return gradient;
-}
-// console.log(createGradient(gradients[0].colors));
-// console.log(createGradient(gradients[1].colors));
-for (let i = 0; i < gradients.length; i += 1) {
-  console.log(`градієнт №${i + 1} - ${createGradient(gradients[i].colors)}`);
-}
+// let gradients = [
+//   {
+//     name: "violet-yellow",
+//     colors: ["#CC66FF", "#FFC000"],
+//   },
+//   {
+//     name: "laguna 3",
+//     colors: ["#CC66FF", "#00B0F0", "#FFC000"],
+//   },
+// ];
+// console.log(gradients);
+// function createGradient(colors) {
+//   if (!Array.isArray(colors) || colors.length === 0) {
+//     console.log("Невірний формат кольорів");
+//     return;
+//   }
+//   const step = 100 / colors.length;
+//   const gradientColors = colors.map((color, index) => {
+//     const percentage =
+//       index === 0 ? Math.round(step * index) : Math.round(step * index + step);
+//     return `${color} ${percentage}%`;
+//   });
+//   const gradient = `linear-gradient(0deg, ${gradientColors.join(", ")})`;
+//   return gradient;
+// }
+// for (let i = 0; i < gradients.length; i += 1) {
+//   console.log(`градієнт №${i + 1} - ${createGradient(gradients[i].colors)}`);
+// }
+
+//-------------------задача-"БАНК"------------------------//
+// const bankAccount = {
+//   owner: "Vadym",
+//   balance: 650,
+//   currency: "USD",
+//   transactions: [],
+//   deposit(amount) {
+//     this.balance = (this.balance + amount).toFixed(2);
+//     this.transactions.push(`Deposit:+${amount}`);
+//   },
+//   withdraw(amount) {
+//     if (this.balance >= amount) {
+//       this.balance = (this.balance - amount).toFixed(2);
+//       this.transactions.push(`Withdraw:-${amount}`);
+//     } else {
+//       let reshta = amount - this.balance.toFixed(2);
+//       console.log(
+//         `На рахунку бракує коштів (не вистачає ${reshta}${this.currency})`
+//       );
+//     }
+//   },
+//   getBalance() {
+//     console.log(`Current balance: ${this.balance} ${this.currency}`);
+//   },
+//   getTransactionHistory() {
+//     if (!this.transactions.length) {
+//       console.log("No transactions yet");
+//     } else {
+//       console.log("Transaction history:");
+//       this.transactions.forEach((t, i) => {
+//         console.log(`${i + 1}. ${t}`);
+//       });
+//     }
+//   },
+//   changeCurrency(newCurrency, rate) {
+//     const oldCurrency = this.currency;
+//     this.balance = +(this.balance * rate).toFixed(2);
+
+//     this.currency = newCurrency;
+//     console.log(
+//       `Currency changed from ${oldCurrency} to ${newCurrency}, new balance: ${this.balance} ${newCurrency}`
+//     );
+//   },
+//   renameOwner(newName) {
+//     const oldName = this.owner;
+//     this.owner = newName;
+//     console.log(`Owner changed from ${oldName} to ${newName}`);
+//   },
+//   summary() {
+//     console.log(
+//       `Owner: ${this.owner} | Balance: ${this.balance} ${this.currency} | Transactions: ${this.transactions.length}`
+//     );
+//   },
+// };
+// bankAccount.deposit(300);
+// bankAccount.withdraw(800.2);
+// bankAccount.getBalance();
+// bankAccount.getTransactionHistory();
+// bankAccount.changeCurrency("UAH", 41.7);
+// bankAccount.renameOwner("Sergii");
+// bankAccount.summary();
+// console.log(bankAccount);
+
+//----------------задача "БІБЛІОТЕКА"-------------//
+
+// const library = {
+//   name: "Міська",
+//   books: [],
+//   maxBooks: 4,
+//   addBook(title, author) {
+//     if (this.books.length + 1 <= this.maxBooks) {
+//       this.books.push({ title: title, author: author, isRead: false });
+//     } else {
+//       console.log(`Перевищено ліміт книг - ліміт ${this.maxBooks} шт`);
+//     }
+//   },
+//   markAsRead(title) {
+//     let found = false;
+//     for (let i = 0; i < this.books.length; i += 1) {
+//       if (this.books[i].title === title) {
+//         this.books[i].isRead = true;
+//         found = true;
+//         console.log(`Книгу "${title}" позначено як прочитану`);
+//         break;
+//       }
+//     }
+//     if (!found) {
+//       console.log("Книгу не знайдено");
+//     }
+//   },
+//   removeBook(title) {
+//     let found = false;
+//     for (let i = 0; i < this.books.length; i += 1) {
+//       if (this.books[i].title === title) {
+//         this.books.splice(i, 1);
+//         found = true;
+//         break;
+//       }
+//     }
+//     if (!found) {
+//       console.log("Книгу не знайдено");
+//     }
+//   },
+//   findBook(title) {
+//     let found = false;
+//     for (let i = 0; i < this.books.length; i += 1) {
+//       if (this.books[i].title === title) {
+//         let readOrNot;
+//         if (!this.books[i].isRead) {
+//           readOrNot = "No";
+//         } else {
+//           readOrNot = "Yes";
+//         }
+//         console.log(
+//           `Title: ${this.books[i].title} | Author: ${this.books[i].author} | Read: ${readOrNot}`
+//         );
+//         found = true;
+//         break;
+//       }
+//     }
+//     if (!found) {
+//       console.log("Книгу не знайдено");
+//     }
+//   },
+//   listBooks() {
+//     for (let i = 0; i < this.books.length; i += 1) {
+//       let readOrNot;
+//       !this.books[i].isRead ? (readOrNot = " ") : (readOrNot = "X");
+//       console.log(
+//         `${i + 1}. [${readOrNot}] ${this.books[i].author} - ${
+//           this.books[i].title
+//         }`
+//       );
+//     }
+//   },
+//   getStats() {
+//     let status = {
+//       total: 0,
+//       read: 0,
+//       unread: 0,
+//       spaceLeft: 0,
+//     };
+//     this.books.forEach((e, i) => {
+//       !e.isRead ? (status.unread += 1) : (status.read += 1);
+//       status.total = this.books.length;
+//       status.spaceLeft = status.total - status.read;
+//     });
+
+//     console.log(status);
+//   },
+//   renameLibrary(newName) {
+//     this.name = newName;
+//     console.log(`Library renamed to '${this.name}'`);
+//   },
+// };
+// library.addBook("Код Да Вінчі", "Ден Браун");
+// library.addBook("Янголи та демони", "Ден Браун");
+// library.addBook("Джерело", "Ден Браун");
+// library.addBook("Інферно", "Ден Браун");
+// library.markAsRead("Джерело");
+// library.markAsRead("Код Да Вінчі");
+// library.removeBook("Джерело");
+// library.findBook("Код Да Вінчі");
+// library.listBooks();
+// library.getStats();
+// library.renameLibrary("Мої книги");
+// console.log(library);
+
+//----------------задача "РЕСТОРАН"-------------//
+
+const order = {
+  tableNumber: 0,
+  items: [],
+  //name, price, quantity, isServed
+  isPaid: false,
+  addItem(name, price, quantity) {},
+  //Додає нову страву до замовлення або оновлює кількість, якщо така страва вже є.
+  removeItem(name) {},
+  //Видаляє страву з замовлення за назвою. Якщо страви немає — виводить повідомлення.
+  getTotal() {},
+  //Обчислює повну суму замовлення (тільки для не поданих страв).
+  markAsServed(name) {},
+  //Позначає конкретну страву як подану (isServed = true).
+  getSummary() {},
+  //Виводить список усіх страв у такому форматі:
+  // 1. 🍝 Pasta x2 — 320 грн [Not served]
+  // 2. 🥗 Salad x1 — 150 грн [Served]
+  pay() {},
+  // Позначає замовлення як оплачене, виводить фінальну суму, змінює isPaid на true.
+  reset() {},
+  // Скидає замовлення — очищає масив items, обнуляє оплату, прибирає позначки isServed.
+};
