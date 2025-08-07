@@ -304,24 +304,120 @@
 //----------------задача "РЕСТОРАН"-------------//
 
 const order = {
-  tableNumber: 0,
+  tableNumber: 17,
   items: [],
-  //name, price, quantity, isServed
   isPaid: false,
-  addItem(name, price, quantity) {},
-  //Додає нову страву до замовлення або оновлює кількість, якщо така страва вже є.
-  removeItem(name) {},
-  //Видаляє страву з замовлення за назвою. Якщо страви немає — виводить повідомлення.
-  getTotal() {},
-  //Обчислює повну суму замовлення (тільки для не поданих страв).
-  markAsServed(name) {},
-  //Позначає конкретну страву як подану (isServed = true).
-  getSummary() {},
-  //Виводить список усіх страв у такому форматі:
-  // 1. 🍝 Pasta x2 — 320 грн [Not served]
-  // 2. 🥗 Salad x1 — 150 грн [Served]
-  pay() {},
-  // Позначає замовлення як оплачене, виводить фінальну суму, змінює isPaid на true.
-  reset() {},
-  // Скидає замовлення — очищає масив items, обнуляє оплату, прибирає позначки isServed.
+  addItem(name, price, quantity) {
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].name === name) {
+        this.items[i].quantity += quantity;
+        return;
+      }
+    }
+    this.items.push({
+      name: name,
+      price: price,
+      quantity: quantity,
+      isServed: false,
+    });
+  },
+
+  removeItem(name) {
+    let found = false;
+    for (let i = 0; i < this.items.length; i++) {
+      const e = this.items[i];
+      if (e.name === name) {
+        this.items.splice(i, 1);
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      console.log(`Такої страви як ${name} не має!`);
+    }
+  },
+  getTotal() {
+    let total = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      const e = this.items[i];
+      if (!e.isServed) {
+        total += e.quantity * e.price;
+        console.log(total);
+      }
+    }
+  },
+
+  markAsServed(name) {
+    let found = false;
+    for (let i = 0; i < this.items.length; i++) {
+      const e = this.items[i];
+      if (e.name === name) {
+        e.isServed = true;
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      console.log(`Такої страви як ${name} не має!`);
+    }
+  },
+
+  getSummary() {
+    if (this.items.length === 0) {
+      console.log("Замовлення порожнє.");
+      return;
+    }
+    for (let i = 0; i < this.items.length; i++) {
+      const e = this.items[i];
+      const status = !e.isServed ? "Not Served" : "Served";
+      console.log(
+        `${i + 1}. ${e.name} х${e.quantity} - ${e.price} грн [${status}]`
+      );
+    }
+  },
+
+  pay() {
+    let allServed = [];
+    let found = false;
+    let summ = 0;
+    let total = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      const e = this.items[i];
+      if (e.isServed) {
+        allServed.push(e);
+        summ = e.quantity * e.price;
+        total += summ;
+      }
+    }
+    if (allServed.length === this.items.length) {
+      this.isPaid = true;
+
+      found = true;
+
+      console.log(`Ваша сума до сплати ${total} грн`);
+    }
+    if (!found) {
+      console.log(`Замовлення ще не виконане повністю`);
+    }
+  },
+
+  reset() {
+    if (this.isPaid) {
+      this.items = [];
+      this.isPaid = false;
+    }
+  },
 };
+order.addItem("салат", 150, 2);
+order.addItem("хачапурі", 230, 4);
+order.addItem("салат", 150, 3);
+order.addItem("плов", 170, 1);
+order.removeItem("плов");
+order.markAsServed("хачапурі");
+order.markAsServed("салат");
+order.getTotal();
+order.getSummary();
+order.pay();
+order.reset();
+console.log(order.items);
+console.log(order);
