@@ -303,121 +303,225 @@
 
 //----------------задача "РЕСТОРАН"-------------//
 
-const order = {
-  tableNumber: 17,
-  items: [],
-  isPaid: false,
-  addItem(name, price, quantity) {
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].name === name) {
-        this.items[i].quantity += quantity;
-        return;
-      }
-    }
-    this.items.push({
-      name: name,
-      price: price,
-      quantity: quantity,
-      isServed: false,
-    });
-  },
+// const order = {
+//   tableNumber: 17,
+//   items: [],
+//   isPaid: false,
+//   addItem(name, price, quantity) {
+//     for (let i = 0; i < this.items.length; i++) {
+//       if (this.items[i].name === name) {
+//         this.items[i].quantity += quantity;
+//         return;
+//       }
+//     }
+//     this.items.push({
+//       name: name,
+//       price: price,
+//       quantity: quantity,
+//       isServed: false,
+//     });
+//   },
 
-  removeItem(name) {
-    let found = false;
-    for (let i = 0; i < this.items.length; i++) {
-      const e = this.items[i];
-      if (e.name === name) {
-        this.items.splice(i, 1);
-        found = true;
-        break;
-      }
-    }
-    if (!found) {
-      console.log(`Такої страви як ${name} не має!`);
-    }
-  },
-  getTotal() {
-    let total = 0;
-    for (let i = 0; i < this.items.length; i++) {
-      const e = this.items[i];
-      if (!e.isServed) {
-        total += e.quantity * e.price;
-        console.log(total);
-      }
-    }
-  },
+//   removeItem(name) {
+//     let found = false;
+//     for (let i = 0; i < this.items.length; i++) {
+//       const e = this.items[i];
+//       if (e.name === name) {
+//         this.items.splice(i, 1);
+//         found = true;
+//         break;
+//       }
+//     }
+//     if (!found) {
+//       console.log(`Такої страви як ${name} не має!`);
+//     }
+//   },
+//   getTotal() {
+//     let total = 0;
+//     for (let i = 0; i < this.items.length; i++) {
+//       const e = this.items[i];
+//       if (!e.isServed) {
+//         total += e.quantity * e.price;
+//         console.log(total);
+//       }
+//     }
+//   },
 
-  markAsServed(name) {
-    let found = false;
-    for (let i = 0; i < this.items.length; i++) {
-      const e = this.items[i];
-      if (e.name === name) {
-        e.isServed = true;
-        found = true;
-        break;
-      }
-    }
-    if (!found) {
-      console.log(`Такої страви як ${name} не має!`);
-    }
-  },
+//   markAsServed(name) {
+//     let found = false;
+//     for (let i = 0; i < this.items.length; i++) {
+//       const e = this.items[i];
+//       if (e.name === name) {
+//         e.isServed = true;
+//         found = true;
+//         break;
+//       }
+//     }
+//     if (!found) {
+//       console.log(`Такої страви як ${name} не має!`);
+//     }
+//   },
 
-  getSummary() {
-    if (this.items.length === 0) {
-      console.log("Замовлення порожнє.");
+//   getSummary() {
+//     if (this.items.length === 0) {
+//       console.log("Замовлення порожнє.");
+//       return;
+//     }
+//     for (let i = 0; i < this.items.length; i++) {
+//       const e = this.items[i];
+//       const status = !e.isServed ? "Not Served" : "Served";
+//       console.log(
+//         `${i + 1}. ${e.name} х${e.quantity} - ${e.price} грн [${status}]`
+//       );
+//     }
+//   },
+
+//   pay() {
+//     let allServed = [];
+//     let found = false;
+//     let summ = 0;
+//     let total = 0;
+//     for (let i = 0; i < this.items.length; i++) {
+//       const e = this.items[i];
+//       if (e.isServed) {
+//         allServed.push(e);
+//         summ = e.quantity * e.price;
+//         total += summ;
+//       }
+//     }
+//     if (allServed.length === this.items.length) {
+//       this.isPaid = true;
+
+//       found = true;
+
+//       console.log(`Ваша сума до сплати ${total} грн`);
+//     }
+//     if (!found) {
+//       console.log(`Замовлення ще не виконане повністю`);
+//     }
+//   },
+
+//   reset() {
+//     if (this.isPaid) {
+//       this.items = [];
+//       this.isPaid = false;
+//     }
+//   },
+// };
+// order.addItem("салат", 150, 2);
+// order.addItem("хачапурі", 230, 4);
+// order.addItem("салат", 150, 3);
+// order.addItem("плов", 170, 1);
+// order.removeItem("плов");
+// order.markAsServed("хачапурі");
+// order.markAsServed("салат");
+// order.getTotal();
+// order.getSummary();
+// order.pay();
+// order.reset();
+// console.log(order.items);
+// console.log(order);
+
+//----------------задача "ФІТНЕС ДОДАТОК"-------------//
+
+const userProfile = {
+  name: "Andrii",
+  age: 28,
+  weight: 80, // кг
+  height: 175, // см
+  workouts: [],
+  addWorkout(type, duration) {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const year = today.getFullYear();
+    const currentDate = `${day}.${month}.${year}`;
+    this.workouts.push({ type: type, duration: duration, date: currentDate });
+  },
+  getWorkoutSummary() {
+    let workList;
+    let numberOfWork = this.workouts.length;
+
+    if (this.workouts.length === 0) {
+      console.log("Вправ поки не має");
       return;
     }
-    for (let i = 0; i < this.items.length; i++) {
-      const e = this.items[i];
-      const status = !e.isServed ? "Not Served" : "Served";
-      console.log(
-        `${i + 1}. ${e.name} х${e.quantity} - ${e.price} грн [${status}]`
-      );
+    let totalDuration = 0;
+    for (let i = 0; i < this.workouts.length; i++) {
+      const e = this.workouts[i];
+      totalDuration += e.duration;
+
+      workList = `Загальна кількість вправ - ${numberOfWork} | Загальна тривалість ${totalDuration} хв`;
+    }
+    console.log(workList);
+  },
+  updateWeight(newWeight) {
+    const oldWeight = this.weight;
+    this.weight = newWeight;
+    const weightDifference =
+      oldWeight < newWeight
+        ? `різниця +${newWeight - oldWeight}`
+        : `різниця -${oldWeight - newWeight}`;
+
+    console.log(`Ваша нова вага ${newWeight} кг, (${weightDifference}кг)`);
+  },
+  calculateBMI() {
+    const bmi = (
+      this.weight /
+      ((this.height / 100) * (this.height / 100))
+    ).toFixed(2);
+    console.log(`Ваш індекс BMI - ${bmi}`);
+  },
+  getHealthStatus() {
+    const bmi = (
+      this.weight /
+      ((this.height / 100) * (this.height / 100))
+    ).toFixed(2);
+    if (bmi < 18.5) {
+      console.log("Недостатня вага");
+    } else if (bmi >= 18.5 && bmi < 25) {
+      console.log("Норма");
+    } else if (bmi >= 25 && bmi < 30) {
+      console.log("Надмірна вага");
+    } else if (bmi >= 30) {
+      console.log("Ожиріння");
+    } else {
+      console.log("Invalid BMI");
     }
   },
-
-  pay() {
-    let allServed = [];
+  removeWorkoutByDate(date) {
     let found = false;
-    let summ = 0;
-    let total = 0;
-    for (let i = 0; i < this.items.length; i++) {
-      const e = this.items[i];
-      if (e.isServed) {
-        allServed.push(e);
-        summ = e.quantity * e.price;
-        total += summ;
+    let allWork = 0;
+    for (let i = this.workouts.length - 1; i >= 0; i--) {
+      const e = this.workouts[i];
+      if (e.date === date) {
+        this.workouts.splice(i, 1);
+        allWork++;
+        found = true;
       }
     }
-    if (allServed.length === this.items.length) {
-      this.isPaid = true;
-
-      found = true;
-
-      console.log(`Ваша сума до сплати ${total} грн`);
-    }
-    if (!found) {
-      console.log(`Замовлення ще не виконане повністю`);
+    if (found) {
+      console.log(`Видалено ${allWork} тренувань`);
+    } else {
+      console.log(`${date} тренувань не було`);
     }
   },
-
-  reset() {
-    if (this.isPaid) {
-      this.items = [];
-      this.isPaid = false;
-    }
+  rename(newName) {
+    const oldName = this.name;
+    this.name = newName;
+    console.log(`Ви змінили ім'я ${oldName} на ${newName}`);
   },
 };
-order.addItem("салат", 150, 2);
-order.addItem("хачапурі", 230, 4);
-order.addItem("салат", 150, 3);
-order.addItem("плов", 170, 1);
-order.removeItem("плов");
-order.markAsServed("хачапурі");
-order.markAsServed("салат");
-order.getTotal();
-order.getSummary();
-order.pay();
-order.reset();
-console.log(order.items);
-console.log(order);
+userProfile.addWorkout("плавання", 30);
+userProfile.addWorkout("присідання", 5);
+userProfile.addWorkout("прижки", 10);
+userProfile.addWorkout("біг", 45);
+
+userProfile.getWorkoutSummary();
+userProfile.updateWeight(78);
+userProfile.calculateBMI();
+userProfile.getHealthStatus();
+userProfile.removeWorkoutByDate("08.08.2025");
+userProfile.rename("Вадим");
+console.log(userProfile.workouts);
+console.log(userProfile);
