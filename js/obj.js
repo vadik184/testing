@@ -424,104 +424,249 @@
 
 //----------------задача "ФІТНЕС ДОДАТОК"-------------//
 
-const userProfile = {
-  name: "Andrii",
-  age: 28,
-  weight: 80, // кг
-  height: 175, // см
-  workouts: [],
-  addWorkout(type, duration) {
-    const today = new Date();
-    const day = String(today.getDate()).padStart(2, "0");
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const year = today.getFullYear();
-    const currentDate = `${day}.${month}.${year}`;
-    this.workouts.push({ type: type, duration: duration, date: currentDate });
-  },
-  getWorkoutSummary() {
-    let workList;
-    let numberOfWork = this.workouts.length;
+// const userProfile = {
+//   name: "Andrii",
+//   age: 28,
+//   weight: 80, // кг
+//   height: 175, // см
+//   workouts: [],
+//   addWorkout(type, duration) {
+//     const today = new Date();
+//     const day = String(today.getDate()).padStart(2, "0");
+//     const month = String(today.getMonth() + 1).padStart(2, "0");
+//     const year = today.getFullYear();
+//     const currentDate = `${day}.${month}.${year}`;
+//     this.workouts.push({ type: type, duration: duration, date: currentDate });
+//   },
+//   getWorkoutSummary() {
+//     let workList;
+//     let numberOfWork = this.workouts.length;
 
-    if (this.workouts.length === 0) {
-      console.log("Вправ поки не має");
-      return;
-    }
-    let totalDuration = 0;
-    for (let i = 0; i < this.workouts.length; i++) {
-      const e = this.workouts[i];
-      totalDuration += e.duration;
+//     if (this.workouts.length === 0) {
+//       console.log("Вправ поки не має");
+//       return;
+//     }
+//     let totalDuration = 0;
+//     for (let i = 0; i < this.workouts.length; i++) {
+//       const e = this.workouts[i];
+//       totalDuration += e.duration;
 
-      workList = `Загальна кількість вправ - ${numberOfWork} | Загальна тривалість ${totalDuration} хв`;
-    }
-    console.log(workList);
-  },
-  updateWeight(newWeight) {
-    const oldWeight = this.weight;
-    this.weight = newWeight;
-    const weightDifference =
-      oldWeight < newWeight
-        ? `різниця +${newWeight - oldWeight}`
-        : `різниця -${oldWeight - newWeight}`;
+//       workList = `Загальна кількість вправ - ${numberOfWork} | Загальна тривалість ${totalDuration} хв`;
+//     }
+//     console.log(workList);
+//   },
+//   updateWeight(newWeight) {
+//     const oldWeight = this.weight;
+//     this.weight = newWeight;
+//     const weightDifference =
+//       oldWeight < newWeight
+//         ? `різниця +${newWeight - oldWeight}`
+//         : `різниця -${oldWeight - newWeight}`;
 
-    console.log(`Ваша нова вага ${newWeight} кг, (${weightDifference}кг)`);
-  },
-  calculateBMI() {
-    const bmi = (
-      this.weight /
-      ((this.height / 100) * (this.height / 100))
-    ).toFixed(2);
-    console.log(`Ваш індекс BMI - ${bmi}`);
-  },
-  getHealthStatus() {
-    const bmi = (
-      this.weight /
-      ((this.height / 100) * (this.height / 100))
-    ).toFixed(2);
-    if (bmi < 18.5) {
-      console.log("Недостатня вага");
-    } else if (bmi >= 18.5 && bmi < 25) {
-      console.log("Норма");
-    } else if (bmi >= 25 && bmi < 30) {
-      console.log("Надмірна вага");
-    } else if (bmi >= 30) {
-      console.log("Ожиріння");
-    } else {
-      console.log("Invalid BMI");
-    }
-  },
-  removeWorkoutByDate(date) {
+//     console.log(`Ваша нова вага ${newWeight} кг, (${weightDifference}кг)`);
+//   },
+//   calculateBMI() {
+//     const bmi = (
+//       this.weight /
+//       ((this.height / 100) * (this.height / 100))
+//     ).toFixed(2);
+//     console.log(`Ваш індекс BMI - ${bmi}`);
+//   },
+//   getHealthStatus() {
+//     const bmi = (
+//       this.weight /
+//       ((this.height / 100) * (this.height / 100))
+//     ).toFixed(2);
+//     if (bmi < 18.5) {
+//       console.log("Недостатня вага");
+//     } else if (bmi >= 18.5 && bmi < 25) {
+//       console.log("Норма");
+//     } else if (bmi >= 25 && bmi < 30) {
+//       console.log("Надмірна вага");
+//     } else if (bmi >= 30) {
+//       console.log("Ожиріння");
+//     } else {
+//       console.log("Invalid BMI");
+//     }
+//   },
+//   removeWorkoutByDate(date) {
+//     let found = false;
+//     let allWork = 0;
+//     for (let i = this.workouts.length - 1; i >= 0; i--) {
+//       const e = this.workouts[i];
+//       if (e.date === date) {
+//         this.workouts.splice(i, 1);
+//         allWork++;
+//         found = true;
+//       }
+//     }
+//     if (found) {
+//       console.log(`Видалено ${allWork} тренувань`);
+//     } else {
+//       console.log(`${date} тренувань не було`);
+//     }
+//   },
+//   rename(newName) {
+//     const oldName = this.name;
+//     this.name = newName;
+//     console.log(`Ви змінили ім'я ${oldName} на ${newName}`);
+//   },
+// };
+// userProfile.addWorkout("плавання", 30);
+// userProfile.addWorkout("присідання", 5);
+// userProfile.addWorkout("прижки", 10);
+// userProfile.addWorkout("біг", 45);
+
+// userProfile.getWorkoutSummary();
+// userProfile.updateWeight(78);
+// userProfile.calculateBMI();
+// userProfile.getHealthStatus();
+// userProfile.removeWorkoutByDate("08.08.2025");
+// userProfile.rename("Вадим");
+// console.log(userProfile.workouts);
+// console.log(userProfile);
+
+//----------------задача "ДОДАТОК З РЕЦЕПТАМИ"-------------//
+
+const recipeBook = {
+  recipes: [],
+  addRecipe(title, ingredients, time) {
     let found = false;
-    let allWork = 0;
-    for (let i = this.workouts.length - 1; i >= 0; i--) {
-      const e = this.workouts[i];
-      if (e.date === date) {
-        this.workouts.splice(i, 1);
-        allWork++;
+    this.recipes.forEach((e) => {
+      if (e.title === title) {
+        console.log(`Страва "${title}" вже у списку`);
+
         found = true;
+        return;
+      }
+    });
+    if (!found) {
+      this.recipes.push({
+        title: title,
+        ingredients: ingredients,
+        time: time,
+      });
+    }
+  },
+  removeRecipe(title) {
+    let found = false;
+    for (let i = this.recipes.length - 1; i >= 0; i--) {
+      const e = this.recipes[i];
+      if (e.title === title) {
+        this.recipes.splice(i, 1);
+        found = true;
+        return;
       }
     }
-    if (found) {
-      console.log(`Видалено ${allWork} тренувань`);
-    } else {
-      console.log(`${date} тренувань не було`);
+    if (!found) {
+      console.log("Такої страви не має");
     }
   },
-  rename(newName) {
-    const oldName = this.name;
-    this.name = newName;
-    console.log(`Ви змінили ім'я ${oldName} на ${newName}`);
+  findRecipe(title) {
+    let found = false;
+    for (let i = 0; i < this.recipes.length; i++) {
+      let e = this.recipes[i];
+      if (e.title === title) {
+        found = true;
+        console.log(e);
+        return e;
+      }
+    }
+    if (!found) {
+      console.log("Такої страви не знайдено");
+    }
+  },
+  listAll() {
+    let ingList;
+    for (let i = 0; i < this.recipes.length; i++) {
+      const e = this.recipes[i];
+
+      ingList = e.ingredients.join(", ");
+
+      console.log(
+        `${i + 1}. "${e.title}" - інгридієнти: ${ingList}. Час приготування ${
+          e.time
+        }хв.`
+      );
+    }
+  },
+  filterByTime(maxTime) {
+    let found = false;
+    for (let i = 0; i < this.recipes.length; i++) {
+      const e = this.recipes[i];
+      if (e.time >= maxTime) {
+        found = true;
+        console.log(e);
+      }
+    }
+    if (!found) {
+      console.log(
+        `Страв, час готування яких більший ніж ${maxTime}хв, не знайдено`
+      );
+    }
+  },
+  updateIngredients(title, newIngredients) {
+    let found = false;
+    this.recipes.forEach((e) => {
+      if (e.title === title) {
+        e.ingredients = newIngredients;
+        found = true;
+      }
+    });
+    if (!found) {
+      console.log("Такої страви не знайдено");
+    }
+  },
+  hasIngredient(ingredient) {
+    const result = [];
+    let found = false;
+    for (let i = 0; i < this.recipes.length; i++) {
+      const e = this.recipes[i];
+      console.log(e.ingredients);
+      for (let j = 0; j < e.ingredients.length; j++) {
+        const el = e.ingredients[j];
+        if (el.includes(ingredient)) {
+          result.push(e.title);
+          found = true;
+          break;
+        }
+      }
+    }
+    !found
+      ? console.log(`Страв що містять інгрідієнт "${ingredient}" не знайдено`)
+      : console.log(
+          `Даний інгрідієнт входить до ${result.length} страв : ${result.join(
+            ", "
+          )}`
+        );
   },
 };
-userProfile.addWorkout("плавання", 30);
-userProfile.addWorkout("присідання", 5);
-userProfile.addWorkout("прижки", 10);
-userProfile.addWorkout("біг", 45);
 
-userProfile.getWorkoutSummary();
-userProfile.updateWeight(78);
-userProfile.calculateBMI();
-userProfile.getHealthStatus();
-userProfile.removeWorkoutByDate("08.08.2025");
-userProfile.rename("Вадим");
-console.log(userProfile.workouts);
-console.log(userProfile);
+console.log(recipeBook);
+console.log(recipeBook.recipes);
+
+recipeBook.addRecipe(
+  "Салат 'Літній'",
+  ["помідори", "огірки", "цибуля", "олія", "спеції"],
+  10
+);
+recipeBook.addRecipe(
+  "Смажена картопля",
+  ["картопля", "цибуля", "олія", "спеції"],
+  15
+);
+recipeBook.addRecipe(
+  "Салат з буряка",
+  ["буряк", "цибуля", "олія", "спеції"],
+  5
+);
+recipeBook.addRecipe("Яєшня", ["помідори", "яйця", "олія", "спеції"], 8);
+recipeBook.addRecipe("Яєшня", ["помідори", "яйця", "олія", "спеції"], 8);
+
+recipeBook.removeRecipe("Смажена картопля");
+recipeBook.findRecipe("Яєшня");
+recipeBook.listAll();
+recipeBook.filterByTime(6);
+recipeBook.updateIngredients("Яєшня", ["яйця", "олія", "сир", "спеції"]);
+recipeBook.hasIngredient("цибуля");
+// recipeBook;
