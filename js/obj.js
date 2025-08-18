@@ -528,145 +528,260 @@
 
 //----------------задача "ДОДАТОК З РЕЦЕПТАМИ"-------------//
 
-const recipeBook = {
-  recipes: [],
-  addRecipe(title, ingredients, time) {
-    let found = false;
-    this.recipes.forEach((e) => {
-      if (e.title === title) {
-        console.log(`Страва "${title}" вже у списку`);
+// const recipeBook = {
+//   recipes: [],
+//   addRecipe(title, ingredients, time) {
+//     let found = false;
+//     this.recipes.forEach((e) => {
+//       if (e.title === title) {
+//         console.log(`Страва "${title}" вже у списку`);
 
+//         found = true;
+//         return;
+//       }
+//     });
+//     if (!found) {
+//       this.recipes.push({
+//         title: title,
+//         ingredients: ingredients,
+//         time: time,
+//       });
+//     }
+//   },
+//   removeRecipe(title) {
+//     let found = false;
+//     for (let i = this.recipes.length - 1; i >= 0; i--) {
+//       const e = this.recipes[i];
+//       if (e.title === title) {
+//         this.recipes.splice(i, 1);
+//         found = true;
+//         return;
+//       }
+//     }
+//     if (!found) {
+//       console.log("Такої страви не має");
+//     }
+//   },
+//   findRecipe(title) {
+//     let found = false;
+//     for (let i = 0; i < this.recipes.length; i++) {
+//       let e = this.recipes[i];
+//       if (e.title === title) {
+//         found = true;
+//         console.log(e);
+//         return e;
+//       }
+//     }
+//     if (!found) {
+//       console.log("Такої страви не знайдено");
+//     }
+//   },
+//   listAll() {
+//     let ingList;
+//     for (let i = 0; i < this.recipes.length; i++) {
+//       const e = this.recipes[i];
+
+//       ingList = e.ingredients.join(", ");
+
+//       console.log(
+//         `${i + 1}. "${e.title}" - інгридієнти: ${ingList}. Час приготування ${
+//           e.time
+//         }хв.`
+//       );
+//     }
+//   },
+//   filterByTime(maxTime) {
+//     let found = false;
+//     for (let i = 0; i < this.recipes.length; i++) {
+//       const e = this.recipes[i];
+//       if (e.time >= maxTime) {
+//         found = true;
+//         console.log(e);
+//       }
+//     }
+//     if (!found) {
+//       console.log(
+//         `Страв, час готування яких більший ніж ${maxTime}хв, не знайдено`
+//       );
+//     }
+//   },
+//   updateIngredients(title, newIngredients) {
+//     let found = false;
+//     this.recipes.forEach((e) => {
+//       if (e.title === title) {
+//         e.ingredients = newIngredients;
+//         found = true;
+//       }
+//     });
+//     if (!found) {
+//       console.log("Такої страви не знайдено");
+//     }
+//   },
+//   hasIngredient(ingredient) {
+//     const result = [];
+//     let found = false;
+//     for (let i = 0; i < this.recipes.length; i++) {
+//       const e = this.recipes[i];
+//       console.log(e.ingredients);
+//       for (let j = 0; j < e.ingredients.length; j++) {
+//         const el = e.ingredients[j];
+//         if (el.includes(ingredient)) {
+//           result.push(e.title);
+//           found = true;
+//           break;
+//         }
+//       }
+//     }
+//     !found
+//       ? console.log(`Страв що містять інгрідієнт "${ingredient}" не знайдено`)
+//       : console.log(
+//           `Даний інгрідієнт входить до ${result.length} страв : ${result.join(
+//             ", "
+//           )}`
+//         );
+//   },
+// };
+
+// console.log(recipeBook);
+// console.log(recipeBook.recipes);
+
+// recipeBook.addRecipe(
+//   "Салат 'Літній'",
+//   ["помідори", "огірки", "цибуля", "олія", "спеції"],
+//   10
+// );
+// recipeBook.addRecipe(
+//   "Смажена картопля",
+//   ["картопля", "цибуля", "олія", "спеції"],
+//   15
+// );
+// recipeBook.addRecipe(
+//   "Салат з буряка",
+//   ["буряк", "цибуля", "олія", "спеції"],
+//   5
+// );
+// recipeBook.addRecipe("Яєшня", ["помідори", "яйця", "олія", "спеції"], 8);
+// recipeBook.addRecipe("Яєшня", ["помідори", "яйця", "олія", "спеції"], 8);
+
+// recipeBook.removeRecipe("Смажена картопля");
+// recipeBook.findRecipe("Яєшня");
+// recipeBook.listAll();
+// recipeBook.filterByTime(6);
+// recipeBook.updateIngredients("Яєшня", ["яйця", "олія", "сир", "спеції"]);
+// recipeBook.hasIngredient("цибуля");
+
+// -------------задача TASKMANAGER----------------
+
+const taskManager = {
+  tasks: [],
+
+  addTask(title, priority) {
+    for (let i = 0; i < this.tasks.length; i++) {
+      const e = this.tasks[i];
+      if (e.title === title) {
+        console.log("таке завдання вже існує");
+        return;
+      }
+    }
+    this.tasks.push({ title: title, priority: priority, isDone: false });
+  },
+  removeTask(title) {
+    let found = false;
+    for (let i = this.tasks.length - 1; i >= 0; i--) {
+      const e = this.tasks[i];
+      if (e.title === title) {
+        this.tasks.splice(i, 1);
+        found = true;
+      }
+    }
+    if (!found) {
+      console.log("такого завдання не має");
+    }
+  },
+  markAsDone(title) {
+    let found = false;
+    for (let i = 0; i < this.tasks.length; i++) {
+      const e = this.tasks[i];
+      if (e.title === title) {
+        e.isDone = true;
         found = true;
         return;
       }
-    });
-    if (!found) {
-      this.recipes.push({
-        title: title,
-        ingredients: ingredients,
-        time: time,
-      });
-    }
-  },
-  removeRecipe(title) {
-    let found = false;
-    for (let i = this.recipes.length - 1; i >= 0; i--) {
-      const e = this.recipes[i];
-      if (e.title === title) {
-        this.recipes.splice(i, 1);
-        found = true;
-        return;
-      }
     }
     if (!found) {
-      console.log("Такої страви не має");
-    }
-  },
-  findRecipe(title) {
-    let found = false;
-    for (let i = 0; i < this.recipes.length; i++) {
-      let e = this.recipes[i];
-      if (e.title === title) {
-        found = true;
-        console.log(e);
-        return e;
-      }
-    }
-    if (!found) {
-      console.log("Такої страви не знайдено");
+      console.log("такого завдання не має");
     }
   },
   listAll() {
-    let ingList;
-    for (let i = 0; i < this.recipes.length; i++) {
-      const e = this.recipes[i];
-
-      ingList = e.ingredients.join(", ");
-
-      console.log(
-        `${i + 1}. "${e.title}" - інгридієнти: ${ingList}. Час приготування ${
-          e.time
-        }хв.`
-      );
+    for (let i = 0; i < this.tasks.length; i++) {
+      const e = this.tasks[i];
+      let done = e.isDone ? "X" : " ";
+      console.log(`[${done}] ${e.title} (Пріоритет:${e.priority})`);
     }
   },
-  filterByTime(maxTime) {
+  filterByPriority(priority) {
     let found = false;
-    for (let i = 0; i < this.recipes.length; i++) {
-      const e = this.recipes[i];
-      if (e.time >= maxTime) {
-        found = true;
-        console.log(e);
+    let allTasks = [];
+    for (let i = 0; i < this.tasks.length; i++) {
+      const e = this.tasks[i];
+      if (e.priority === priority) {
+        let doneOrNot = !e.isDone ? "(не виконано)" : "(виконано)";
+        allTasks.push(`"${e.title}" ${doneOrNot}`);
       }
+
+      found = true;
     }
-    if (!found) {
-      console.log(
-        `Страв, час готування яких більший ніж ${maxTime}хв, не знайдено`
-      );
-    }
+    !found
+      ? console.log(`Завдань з приоритетом "${priority}" не знайдено`)
+      : console.log(
+          `З пріорітетом "${priority}" знайдено ${allTasks.length} завдань: ${allTasks}`
+        );
   },
-  updateIngredients(title, newIngredients) {
+  listPending() {
     let found = false;
-    this.recipes.forEach((e) => {
-      if (e.title === title) {
-        e.ingredients = newIngredients;
+    let allTasks = [];
+    this.tasks.forEach((e) => {
+      if (!e.isDone) {
+        allTasks.push(`"${e.title}" (пріоритет - "${e.priority}")`);
         found = true;
       }
     });
-    if (!found) {
-      console.log("Такої страви не знайдено");
-    }
-  },
-  hasIngredient(ingredient) {
-    const result = [];
-    let found = false;
-    for (let i = 0; i < this.recipes.length; i++) {
-      const e = this.recipes[i];
-      console.log(e.ingredients);
-      for (let j = 0; j < e.ingredients.length; j++) {
-        const el = e.ingredients[j];
-        if (el.includes(ingredient)) {
-          result.push(e.title);
-          found = true;
-          break;
-        }
-      }
-    }
     !found
-      ? console.log(`Страв що містять інгрідієнт "${ingredient}" не знайдено`)
+      ? console.log("Всі завдання виконані")
       : console.log(
-          `Даний інгрідієнт входить до ${result.length} страв : ${result.join(
-            ", "
-          )}`
+          `Знайдено невиконаних завдань - ${allTasks.length} : ${allTasks}`
+        );
+  },
+  stats() {
+    let found = false;
+    let doneTasks = [];
+    let doNotDoneTasks = [];
+    this.tasks.forEach((e) => {
+      !e.isDone ? doNotDoneTasks.push(e.title) : doneTasks.push(e.title);
+      found = true;
+    });
+    !found
+      ? console.log("Список завдань пустий")
+      : console.log(
+          `Кількість всіх завдань - ${
+            doneTasks.length + doNotDoneTasks.length
+          }, виконаних - ${doneTasks.length}, невиконаних - ${
+            doNotDoneTasks.length
+          }`
         );
   },
 };
+console.log(taskManager);
+console.log(taskManager.tasks);
+taskManager.addTask("заміна цінників", "medium");
+taskManager.addTask("протерти пил", "low");
+taskManager.addTask("помити вікно", "hight");
+taskManager.addTask("виставити телефони", "hight");
+taskManager.removeTask("протерти пил");
+taskManager.markAsDone("виставити телефони");
+taskManager.listAll();
+taskManager.filterByPriority("hight");
+taskManager.listPending();
+taskManager.stats();
 
-console.log(recipeBook);
-console.log(recipeBook.recipes);
-
-recipeBook.addRecipe(
-  "Салат 'Літній'",
-  ["помідори", "огірки", "цибуля", "олія", "спеції"],
-  10
-);
-recipeBook.addRecipe(
-  "Смажена картопля",
-  ["картопля", "цибуля", "олія", "спеції"],
-  15
-);
-recipeBook.addRecipe(
-  "Салат з буряка",
-  ["буряк", "цибуля", "олія", "спеції"],
-  5
-);
-recipeBook.addRecipe("Яєшня", ["помідори", "яйця", "олія", "спеції"], 8);
-recipeBook.addRecipe("Яєшня", ["помідори", "яйця", "олія", "спеції"], 8);
-
-recipeBook.removeRecipe("Смажена картопля");
-recipeBook.findRecipe("Яєшня");
-recipeBook.listAll();
-recipeBook.filterByTime(6);
-recipeBook.updateIngredients("Яєшня", ["яйця", "олія", "сир", "спеції"]);
-recipeBook.hasIngredient("цибуля");
-// recipeBook;
+// taskManager;
