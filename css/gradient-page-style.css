@@ -41,10 +41,15 @@ li {
 }
 .gradient-name {
   color: rgb(29, 29, 31);
+
   padding: 0 10px 20px 10px;
 }
 .gradient-text {
+  width: 100px;
   color: rgba(29, 29, 31, 0.7);
+  padding: 2px 6px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.6);
   font-size: 20px;
   font-weight: 700;
 }
@@ -57,10 +62,4 @@ li {
   border-radius: 10px;
   width: 300px;
   height: 165px;
-}
-.box-1 {
-  background: linear-gradient(0deg, #ffc000 0%, #cc66ff 100%);
-}
-.box-2 {
-  background: linear-gradient(0deg, #00b0f0 0%, #cc66ff 100%);
 }
